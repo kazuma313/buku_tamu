@@ -1,16 +1,7 @@
-input_nama = input("Masukan nama : ")
+import re
 
-while True:
-    # tambahkan regex untuk cek bentuk nomor telepon
-    input_no_telepon = input("Masukan no telepon : ")
-    if len(input_no_telepon) == 12: # ini masih bisa di clean menjadi satu baris
-        break
-    print("coba cek lagi no telepon anda")
-    
-input_alamat = input("Masukan alamat : ")
+regex_pattern = re.compile(r'\b08\d{10}\b')
+teks = "082343023442"
+nomor_hp = regex_pattern.search(teks)
 
-json = dict(nama = input_nama, 
-            no_telepon = input_no_telepon, 
-            alamat = input_alamat)
-
-print(json)
+print(nomor_hp.group(0))

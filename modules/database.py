@@ -49,22 +49,19 @@ import json
 
 
 
-class Database():
-    columns = ("nama", "alamat", "noTelepon")
+class Database_bukuTamu():
+    columns =  "nama, alamat, noTelepon"
     
     def __init__(self, database_name:str) -> None:
         self.connect = sqlite3.connect(f"{database_name}.db")
         self.connect.row_factory = sqlite3.Row
         self.cursor = self.connect.cursor()
-        
-        # buat nama column lebih responsive
         try:
-            self.cursor.execute("CREATE TABLE buku(nama, alamat, noTelepon)")  # try untuk handle jika table sudah ada
+            self.cursor.execute(f"CREATE TABLE buku({self.columns})")  # try untuk handle jika table sudah ada
         except:
             print("table buku sudah dibuat")
         
     def create_table(self, table_name:str, *columns:str):
-        
         columns = ", ".join(columns[:])
         self.cursor.execute(f"CREATE TABLE {table_name} ({columns})")
 

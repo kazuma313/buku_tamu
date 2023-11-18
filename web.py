@@ -1,7 +1,6 @@
-from flask import Flask
-from flask import request, render_template, url_for, request, jsonify, redirect
-import json
-from database import Database
+from flask import Flask, request, render_template, url_for, request, jsonify, redirect
+from modules.database import Database_bukuTamu as Database
+from modules.data_validation import input_noTelepon, input_nama
 
 app = Flask(__name__)
 
@@ -14,7 +13,10 @@ def submit_form():
     if request.method == "POST":
         data = request.form.to_dict()
         db = Database("buku_tamu")
-        db.insert("buku", data["nama"], data["alamat"], data["noTelepon"])
+        nomor_telepon = input_noTelepon(data["noTelepon"])
+        nama = input_nama(data["nama"])
+        alamat = input_nama(data["alamat"])
+        db.insert("buku", nama, alamat, nomor_telepon)
         return redirect("/lihat_data")
     else:
         return 'Something went wrong. Try again!'

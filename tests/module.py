@@ -3,14 +3,23 @@ import re
 def input_nama(nama):
     if bool(nama) == True:
         return str(nama)
+    else:
+        return Exception
 
 def input_noTelepon(nomor):
     try :
         if len(str(nomor)) == 12: 
-            regex_pattern = re.compile(r'\b08\d{10}\b')
-            nomor_hp = regex_pattern.search(str(nomor))
-            return str(nomor_hp.group(0))
+            try:
+                regex_pattern = re.compile(r'\b08\d{10}\b')
+                nomor_hp = regex_pattern.search(str(nomor))
+                return str(nomor_hp.group(0))
+            except AttributeError as err:
+                return err
+        else:
+            return Exception
     except AssertionError as err:
         return err
 
+# print(bool(input_noTelepon("083324512312")))
+print(bool(input_nama("")))
 

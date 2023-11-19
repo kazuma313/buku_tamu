@@ -9,7 +9,7 @@ class TestStringMethods(unittest.TestCase):
     def test_noTeleponTest1(self):
         test_param = 10
         result = module.input_noTelepon(test_param)
-        self.assertFalse(isinstance(result, AssertionError))
+        self.assertTrue(bool(result))
         
     def test_noTeleponTest2(self):
         test_param = "082222222222"
@@ -24,12 +24,17 @@ class TestStringMethods(unittest.TestCase):
     def test_noTeleponTest4(self):
         test_param = "083"
         result = module.input_noTelepon(test_param)
-        self.assertFalse(isinstance(result, AssertionError))
+        self.assertTrue(bool(result))
+        
+    def test_noTeleponTest5(self):
+        test_param = "083"
+        result = module.input_noTelepon(test_param)
+        self.assertTrue(bool(result))
         
     def test_nama1(self):
         test_param = ""
         result = module.input_nama(test_param)
-        self.assertFalse(isinstance(result, AssertionError))
+        self.assertTrue(bool(result))
         
     def test_nama2(self):
         test_param = 13

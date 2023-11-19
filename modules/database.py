@@ -1,63 +1,13 @@
 import sqlite3
 import json
-# con = sqlite3.connect("buku_tamu.db")
-# cur = con.cursor()
-# # cur.execute("CREATE TABLE buku(nama, alamat, no_telepon)")
-# res = cur.execute("SELECT name FROM sqlite_master")
-# print(res.fetchone())
-
-# cur.execute("""
-#     INSERT INTO buku VALUES
-#         ('Kurnia Zulda Matondang', 'Jambi', 0822),
-#         ('Seta Murdha Pamungkas', 'Probolinggo', 9821)
-# """)
-# con.commit()
-
-
-# # membuat json dari DML
-# con.row_factory = sqlite3.Row
-# db = con.cursor()
-# db.execute("""
-#     INSERT INTO buku VALUES
-#         ('Fany', 'Jambi', 0822),
-#         ('Mauren', 'Probolinggo', 9821)
-# """)
-# con.commit()
-# res = db.execute('''
-#     SELECT * from buku
-#     ''').fetchall()
-# print(res)
-
-# import json
-# print(json.dumps([dict(ix) for ix in res]))
-
-
-
-
-# data = [
-#     ("Monty Python Live at the Hollywood Bowl", "1982", 7.9),
-#     ("Monty Python's The Meaning of Life", "1983", 7.5),
-#     ("Monty Python's Life of Brian", "1979", 8.0),
-# ] # Terdapat cara untuk input menggunakan dictionary
-# cur.executemany("INSERT INTO buku VALUES(?, ?, ?)", data) # Gunakan place holder '?' untuk menghidari sql injection attack menggunakan string
-# con.commit()  # Remember to commit the transaction after executing INSERT.
-
-# con.close() # verifikasi database untuk disimpan ke disk
-
-
-
-
-
 
 class Database_bukuTamu():
-    columns =  "nama, alamat, noTelepon"
-    
     def __init__(self, database_name:str) -> None:
         self.connect = sqlite3.connect(f"{database_name}.db")
         self.connect.row_factory = sqlite3.Row
         self.cursor = self.connect.cursor()
         try:
-            self.cursor.execute(f"CREATE TABLE buku({self.columns})")  # try untuk handle jika table sudah ada
+            self.cursor.execute(f"CREATE TABLE buku(nama, alamat, noTelepon)")
         except:
             print("table buku sudah dibuat")
         
@@ -77,13 +27,12 @@ class Database_bukuTamu():
         self.connect.commit()
         self.save_data()
     
-    def update(self, table_name:str, column_name:str, column_value:str):
-        # update ini belum dinamis
+    def update(self, table_name:str, *column_value, nama):
         self.cursor.execute(f"""
                                 UPDATE {table_name}
-                                SET {column_name} = ?
-                                WHERE nama = 'kurnia zulda';
-                            """, (column_value,))
+                                SET alamat = ?, noTelepon = ?
+                                WHERE nama = ?;
+                            """, (column_value[0], column_value[1], nama))
         self.connect.commit()
         self.save_data()
         
@@ -126,28 +75,3 @@ class Database_bukuTamu():
         self.connect.close()
         
         
-# database = Database("buku_tamu")
-# print(database)
-# database.create_table("buku", "nama", "alamat", "noTelepon") # berikan kondisi supaya bisa dirun walau sudah ada tuble
-# database.see_table()
-
-# database.insert("buku", "kurnia zulda", "jambi", "082")
-# isi_table = database.select(table_name="buku")
-
-# import json
-# somedict = { "item" : [ x for x in isi_table ]}
-# json_form = json.dumps(somedict)
-
-# print(somedict['item'])
-# print(json_form)
-
-# print(database.select(table_name="buku"))
-
-# database.update("buku", "alamat", "Malang")
-# print(database.select(table_name="buku"))
-
-# database.delete("buku", "kurnia zulda")
-# print(database.select(table_name="buku"))
-
-# print("----",database.search(table_name="buku", cari="ZUL"))
-# print("----",database.detail(table_name="buku", cari="kurnia zulda matondang"))

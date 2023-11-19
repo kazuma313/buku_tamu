@@ -14,17 +14,22 @@ Buku tamu ini merupakan aplikasi sederhana yang menerapkan restful. database yan
 ![index](https://raw.githubusercontent.com/kazuma313/buku_tamu/main/gambar/index.png)
 
 2. jika ingin melihat semua data terdapat pada endpoint ('/lihat_data')
+
 ![lihat data](https://raw.githubusercontent.com/kazuma313/buku_tamu/main/gambar/lihat_data.png)
 
-3. Jika ingin mencari nama atau alamat, dapat menggunakan endpoint ('/search_data/<arg>')
+4. Jika ingin mencari nama atau alamat, dapat menggunakan endpoint ('/search_data/<arg>')
+
 ![search data](https://raw.githubusercontent.com/kazuma313/buku_tamu/main/gambar/search_data.png)
 
-4. Jika ingin melihat detail suatu nama, dapat menggunakan endpoint ('/detail_data/<nama>')
+6. Jika ingin melihat detail suatu nama, dapat menggunakan endpoint ('/detail_data/<nama>')
+
 ![detail data](https://raw.githubusercontent.com/kazuma313/buku_tamu/main/gambar/detail_data.png)
 
-5. Jika ingin menghapus data, dapat menggunakan endpoint ('/hapus_data/<nama>')
+8. Jika ingin menghapus data, dapat menggunakan endpoint ('/hapus_data/<nama>')
+
 ![hapus data](https://raw.githubusercontent.com/kazuma313/buku_tamu/main/gambar/hapus_data.png)
 
-6. Jika ingin update data, dapat menggunakan endpoint ('/update/<nama>')
+9. Jika ingin update data, dapat menggunakan endpoint ('/update/<nama>')
+
 ![update data](https://raw.githubusercontent.com/kazuma313/buku_tamu/main/gambar/update_data.png)
 

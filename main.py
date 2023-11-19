@@ -71,7 +71,6 @@ def search_data(arg):
 def detail_data(nama):
     db = Database("buku_tamu")
     data_db = db.detail("buku", cari=nama)
-    print(data_db)
     return data_db
 
 
